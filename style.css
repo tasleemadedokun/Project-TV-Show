@@ -1,3 +1,17 @@
 #root {
-  color: red;
+  color: rgb(0, 60, 255);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  gap: 20px;
+  padding: 20px;
+}
+.episode-card {
+  border: 1px solid #db5e43;
+  padding: 10px;
+  border-radius: 8px;
+}
+
+.episode-card img {
+  width: 100%;
+  height: auto;
 }
