@@ -15,3 +15,19 @@
   width: 100%;
   height: auto;
 }
+
+.searchContainer {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 16px;
+  margin: 0 20px;
+
+  input {
+    padding: 10px;
+  }
+
+  select {
+    padding: 10px;
+  }
+}
