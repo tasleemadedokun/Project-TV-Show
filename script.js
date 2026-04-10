@@ -2,8 +2,19 @@
 let allEpisodes = [];
 
 function setup() {
-  makePageForEpisodes(allEpisodes);
-  createOptions(allEpisodes);
+  showLoadingMessage();
+  fetch("https://api.tvmaze.com/shows/82/episodes")
+    .then((response) => response.json())
+    .then((episodeList) => {
+      allEpisodes = episodeList;
+
+      makePageForEpisodes(allEpisodes);
+      createOptions(allEpisodes);
+      setupSearch();
+    })
+    .catch(() => {
+      showErrorMessage();
+    });
 }
 function formatEpisodeCode(season, episode) {
   const seasonStr = String(season).padStart(2, "0");
