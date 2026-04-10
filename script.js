@@ -20,6 +20,11 @@ function showLoadingMessage() {
   const root = document.getElementById("root");
   root.innerHTML = "<p>Loading episodes... please wait</p>";
 }
+function showErrorMessage() {
+  const root = document.getElementById("root");
+  root.innerHTML = "<p>Failed to load episodes. Please try again later.</p>";
+}
+
 function formatEpisodeCode(season, episode) {
   const seasonStr = String(season).padStart(2, "0");
   const episodeStr = String(episode).padStart(2, "0");
