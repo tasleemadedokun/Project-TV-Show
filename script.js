@@ -16,6 +16,10 @@ function setup() {
       showErrorMessage();
     });
 }
+function showLoadingMessage() {
+  const root = document.getElementById("root");
+  root.innerHTML = "<p>Loading episodes... please wait</p>";
+}
 function formatEpisodeCode(season, episode) {
   const seasonStr = String(season).padStart(2, "0");
   const episodeStr = String(episode).padStart(2, "0");
