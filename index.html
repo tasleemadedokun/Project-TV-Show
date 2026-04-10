@@ -1,39 +1,33 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV Show Project | Tasleem Adedokun (tasleemadedokun)</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TV Show Project | Tasleem Adedokun (tasleemadedokun)</title>
-  <link href="style.css" rel="stylesheet" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-</head>
-
-<body>
-  <main>
-    <div class="searchContainer">
-      <select id="selectEpisode">
-        <!-- <option>Select Episode</option> -->
-      </select>
-      <input placeholder="search" id="searchInput" />
-      <div>
-        <span>Displaying</span>
-        <span id="searchResult">73
-        </span>
-        <span>/73 episodes</span>
+  <body>
+    <main>
+      <div class="searchContainer">
+        <select id="selectEpisode">
+          <!-- <option>Select Episode</option> -->
+        </select>
+        <input placeholder="search" id="searchInput" />
+        <div>
+          <span>Displaying</span>
+          <span id="searchResult">73 </span>
+          <span>/73 episodes</span>
+        </div>
       </div>
-    </div>
-    <div id="root">
+      <div id="root"></div>
+    </main>
 
-    </div>
-  </main>
+    <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
+    <script src="episodes.js"></script>
 
-
-  <!-- Loads a provided function called getAllEpisodes() which returns all episodes -->
-  <script src="episodes.js"></script>
-
-  <!-- Loads YOUR javascript code -->
-  <script src="script.js"></script>
-</body>
-
+    <!-- Loads YOUR javascript code -->
+    <script src="script.js"></script>
+  </body>
 </html>
