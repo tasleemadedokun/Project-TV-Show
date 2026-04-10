@@ -1,5 +1,5 @@
 //You can edit ALL of the code here
-const allEpisodes = getAllEpisodes();
+let allEpisodes = [];
 
 function setup() {
   makePageForEpisodes(allEpisodes);
