@@ -1,33 +1,60 @@
 #root {
   color: rgb(0, 60, 255);
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* 3 per row */
+  grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
   padding: 20px;
 }
+
+
 .episode-card {
   border: 1px solid #db5e43;
   padding: 10px;
   border-radius: 8px;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.episode-card:hover {
+  transform: scale(1.02);
 }
 
 .episode-card img {
   width: 100%;
   height: auto;
+  border-radius: 6px;
 }
 
+/* Search container */
 .searchContainer {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 16px;
   margin: 0 20px;
+  flex-wrap: wrap; 
+}
+.searchContainer input {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+}
 
-  input {
-    padding: 10px;
-  }
+.searchContainer input:focus {
+  border-color: rgb(0, 60, 255);
+}
 
-  select {
-    padding: 10px;
-  }
+.searchContainer select {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  outline: none;
+  cursor: pointer;
+}
+
+
+#searchResult {
+  font-weight: bold;
 }
