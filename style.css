@@ -1,5 +1,5 @@
 #root {
-  color: rgb(0, 60, 255);
+  color: rgb(3, 6, 18);
   display: grid;
   grid-template-columns: repeat(3, 1fr); 
   gap: 20px;
@@ -11,8 +11,8 @@
   border: 1px solid #db5e43;
   padding: 10px;
   border-radius: 8px;
-  background: #fff;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  background: #fcfbfbd9;
+  box-shadow:  0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 
