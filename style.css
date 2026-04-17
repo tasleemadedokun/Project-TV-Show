@@ -1,18 +1,17 @@
 #root {
   color: rgb(3, 6, 18);
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px;
   padding: 20px;
 }
-
 
 .episode-card {
   border: 1px solid #db5e43;
   padding: 10px;
   border-radius: 8px;
   background: #fcfbfbd9;
-  box-shadow:  0 2px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   transition: transform 0.2s ease;
 }
 
@@ -32,7 +31,7 @@
   align-items: center;
   gap: 16px;
   margin: 0 20px;
-  flex-wrap: wrap; 
+  flex-wrap: wrap;
 }
 .searchContainer input {
   padding: 10px;
@@ -53,7 +52,14 @@
   cursor: pointer;
 }
 
-
 #searchResult {
   font-weight: bold;
+}
+
+.tvShowSelector {
+  display: flex;
+
+  align-items: center;
+  gap: 32px;
+  margin: 0 20px;
 }
