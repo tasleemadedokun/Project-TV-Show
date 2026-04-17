@@ -1,17 +1,106 @@
-#root {
-  color: rgb(3, 6, 18);
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #0f1115;
+  color: #e6e6e6;
+}
+
+
+
+main {
+  max-width: 1200px;
+  margin: 0 auto;
   padding: 20px;
 }
 
-.episode-card {
-  border: 1px solid #db5e43;
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+
+
+#navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #1a1d24;
+  padding: 12px 20px;
+  margin: 10px 0 20px 0;
+  border-radius: 10px;
+}
+
+
+
+.searchContainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  justify-content: flex-start;
+
+  background: #1a1d24;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.searchContainer input,
+.searchContainer select {
   padding: 10px;
+  border: none;
+  border-radius: 6px;
+  outline: none;
+  background: #2a2f3a;
+  color: white;
+  min-width: 180px;
+}
+
+.searchContainer input:focus,
+.searchContainer select:focus {
+  border: 1px solid #2d6cdf;
+}
+
+
+
+#root {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding: 10px 0;
+}
+
+
+
+.show-card {
+  background: #1a1d24;
+  border: 1px solid #2d6cdf;
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.show-card:hover {
+  transform: scale(1.02);
+  background: #222836;
+}
+
+.show-card img {
+  width: 100%;
   border-radius: 8px;
-  background: #fcfbfbd9;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+
+.episode-card {
+  background: #1a1d24;
+  border: 1px solid #2d6cdf;
+  border-radius: 12px;
+  padding: 12px;
   transition: transform 0.2s ease;
 }
 
@@ -21,45 +110,22 @@
 
 .episode-card img {
   width: 100%;
-  height: auto;
-  border-radius: 6px;
+  border-radius: 8px;
 }
 
-.searchContainer {
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  gap: 16px;
-  margin: 0 20px;
-  flex-wrap: wrap;
-}
-.searchContainer input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
+
+
+p {
+  color: #c9c9c9;
 }
 
-.searchContainer input:focus {
-  border-color: rgb(0, 60, 255);
+strong {
+  color: #ffffff;
 }
 
-.searchContainer select {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 6px;
-  outline: none;
-  cursor: pointer;
-}
 
-#searchResult {
+
+#allEpisodesLength {
   font-weight: bold;
-}
-
-.tvShowSelector {
-  display: flex;
-
-  align-items: center;
-  gap: 32px;
-  margin: 0 20px;
+  color: #ffffff;
 }
