@@ -1,37 +1,44 @@
 <!doctype html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>TV Show Project | Tasleem Adedokun (tasleemadedokun)</title>
+    <link href="style.css" rel="stylesheet" />
+    <link rel="icon" href="/favicon.ico" type="image/x-icon" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TV Show Project | Tasleem Adedokun (tasleemadedokun)</title>
-  <link href="style.css" rel="stylesheet" />
-  <link rel="icon" href="/favicon.ico" type="image/x-icon" />
-</head>
+  <body>
+    <main>
+      <h1>TV Show Episode Viewer</h1>
 
-<body>
-  <main>
-    <div class="searchContainer">
-      <select id="tvShowSelector">
-        <!-- <option>Select Tv Show</option> -->
-      </select>
-      <label for="selectEpisode">Choose an episode:</label>
-      <select id="selectEpisode">
-        <!-- <option>Select Episode</option> -->
-      </select>
-      <input placeholder="search" id="searchInput" />
-      <div>
-        <span>Displaying</span>
-        <span id="searchResultDisplaying"></span>
-        <span>/</span>
-        <span id="allEpisodesLength"></span>
+      <div class="searchContainer">
+        <label for="tvShowSelector">
+          <strong>Choose a show:</strong>
+        </label>
+        <select id="tvShowSelector"></select>
+
+        <label for="selectEpisode">
+          <strong>Choose episodes:</strong>
+        </label>
+        <select id="selectEpisode"></select>
+
+        <label for="searchInput">
+          <strong>Search episodes:</strong>
+        </label>
+        <input placeholder="Search..." id="searchInput" />
+
+        <div>
+          <span>Displaying </span>
+          <span id="searchResultDisplaying"></span>
+          <span> / </span>
+          <span id="allEpisodesLength"></span>
+        </div>
       </div>
-    </div>
-    <div id="root"></div>
-  </main>
 
-  <!-- Loads YOUR javascript code -->
-  <script src="script.js"></script>
-</body>
+      <div id="root"></div>
+    </main>
 
+    <script src="script.js"></script>
+  </body>
 </html>
