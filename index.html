@@ -15,22 +15,28 @@
       <div id="navBar"></div>
 
       <div class="searchContainer">
-        <label for="tvShowSelector">
-          <strong>Choose a show:</strong>
-        </label>
-        <select id="tvShowSelector"></select>
+        <div id="showControls">
+          <label for="tvShowSelector">
+            <strong>Choose a show:</strong>
+          </label>
+          <select id="tvShowSelector"></select>
+        </div>
 
-        <label for="selectEpisode">
-          <strong>Choose episodes:</strong>
-        </label>
-        <select id="selectEpisode"></select>
+        <div id="searchControls">
+          <label for="searchInput">
+            <strong>Search:</strong>
+          </label>
+          <input placeholder="Search..." id="searchInput" />
+        </div>
 
-        <label for="searchInput">
-          <strong>Search episodes:</strong>
-        </label>
-        <input placeholder="Search..." id="searchInput" />
+        <div id="episodeControls">
+          <label for="selectEpisode">
+            <strong>Choose episodes:</strong>
+          </label>
+          <select id="selectEpisode"></select>
+        </div>
 
-        <div>
+        <div id="stats">
           <span>Displaying </span>
           <span id="searchResultDisplaying"></span>
           <span> / </span>
@@ -40,6 +46,19 @@
 
       <div id="root"></div>
     </main>
+
+    <footer>
+      <p>
+        Data provided by
+        <a
+          href="https://www.tvmaze.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          TVMaze
+        </a>
+      </p>
+    </footer>
 
     <script src="script.js"></script>
   </body>
