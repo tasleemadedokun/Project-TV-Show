@@ -6,17 +6,49 @@ let showCache = null;
 
 let currentView = "shows";
 
+window.onload = setup;
+
 function setup() {
   showLoadingMessage();
 
   document.getElementById("tvShowSelector").style.display = "none";
   document.getElementById("selectEpisode").style.display = "none";
 
-  fetchShows().then(() => {
+  fetchAllShows().then((shows) => {
+    allShows = shows;
     renderShowsView();
   });
 
   setupListeners();
+}
+
+function fetchAllShows() {
+  if (showCache) return Promise.resolve(showCache);
+
+  return fetch("https://api.tvmaze.com/shows")
+    .then((res) => res.json())
+    .then((data) => {
+      const sorted = data.sort((a, b) =>
+        a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
+      );
+
+      showCache = sorted;
+      return sorted;
+    });
+}
+
+function fetchEpisodes(showId) {
+  return fetch(`https://api.tvmaze.com/shows/${showId}/episodes`).then((res) =>
+    res.json(),
+  );
+}
+
+function getCachedEpisodes(showId) {
+  return episodeCache[showId];
+}
+
+function setCachedEpisodes(showId, data) {
+  episodeCache[showId] = data;
 }
 
 function setupListeners() {
@@ -28,10 +60,10 @@ function setupListeners() {
     const id = e.target.value;
 
     if (!id) {
-      makePageForEpisodes(allEpisodes);
+      renderEpisodes(allEpisodes);
     } else {
       const ep = allEpisodes.find((x) => x.id == id);
-      if (ep) makePageForEpisodes([ep]);
+      if (ep) renderEpisodes([ep]);
     }
   });
 
@@ -56,25 +88,9 @@ function setupListeners() {
           (ep.summary || "").toLowerCase().includes(term),
       );
 
-      makePageForEpisodes(filtered);
+      renderEpisodes(filtered);
     }
   });
-}
-
-function fetchShows() {
-  if (showCache) {
-    allShows = showCache;
-    return Promise.resolve();
-  }
-
-  return fetch("https://api.tvmaze.com/shows")
-    .then((res) => res.json())
-    .then((data) => {
-      showCache = data.sort((a, b) =>
-        a.name.toLowerCase().localeCompare(b.name.toLowerCase()),
-      );
-      allShows = showCache;
-    });
 }
 
 function renderShowsView() {
@@ -84,10 +100,33 @@ function renderShowsView() {
   document.getElementById("selectEpisode").style.display = "none";
 
   document.getElementById("searchInput").value = "";
-
   document.getElementById("navBar").innerHTML = "";
 
   renderShowsList(allShows);
+}
+
+function renderEpisodesView(showName) {
+  currentView = "episodes";
+
+  document.getElementById("tvShowSelector").style.display = "inline-block";
+  document.getElementById("selectEpisode").style.display = "inline-block";
+
+  renderNavBar(showName);
+}
+
+async function loadEpisodesForShow(showId) {
+  let data = getCachedEpisodes(showId);
+
+  if (!data) {
+    showLoadingMessage();
+    data = await fetchEpisodes(showId);
+    setCachedEpisodes(showId, data);
+  }
+
+  allEpisodes = data;
+
+  renderEpisodeOptions(data);
+  renderEpisodes(data);
 }
 
 function renderShowsList(shows) {
@@ -119,52 +158,7 @@ function renderShowsList(shows) {
   updateEpisodeCount(0);
 }
 
-function renderEpisodesView(showName) {
-  currentView = "episodes";
-
-  document.getElementById("tvShowSelector").style.display = "inline-block";
-  document.getElementById("selectEpisode").style.display = "inline-block";
-
-  showBackButton(showName);
-}
-
-function showBackButton(showName) {
-  const nav = document.getElementById("navBar");
-
-  nav.innerHTML = `
-    <button id="backButton">← Back to shows</button>
-    <h2>${showName}</h2>
-  `;
-
-  document.getElementById("backButton").onclick = renderShowsView;
-}
-
-function loadEpisodesForShow(showId) {
-  if (episodeCache[showId]) {
-    allEpisodes = episodeCache[showId];
-
-    createOptions(allEpisodes);
-    makePageForEpisodes(allEpisodes);
-    updateEpisodeCount(allEpisodes.length);
-
-    return;
-  }
-
-  showLoadingMessage();
-
-  fetch(`https://api.tvmaze.com/shows/${showId}/episodes`)
-    .then((res) => res.json())
-    .then((data) => {
-      episodeCache[showId] = data;
-      allEpisodes = data;
-
-      createOptions(allEpisodes);
-      makePageForEpisodes(allEpisodes);
-      updateEpisodeCount(allEpisodes.length);
-    });
-}
-
-function makePageForEpisodes(list) {
+function renderEpisodes(list) {
   const root = document.getElementById("root");
   root.innerHTML = "";
 
@@ -185,7 +179,7 @@ function makePageForEpisodes(list) {
   updateEpisodeCount(list.length);
 }
 
-function createOptions(list) {
+function renderEpisodeOptions(list) {
   const sel = document.getElementById("selectEpisode");
 
   sel.innerHTML =
@@ -194,11 +188,23 @@ function createOptions(list) {
       .map(
         (ep) => `
       <option value="${ep.id}">
-        S${String(ep.season).padStart(2, "0")}E${String(ep.number).padStart(2, "0")} - ${ep.name}
+        S${String(ep.season).padStart(2, "0")}
+        E${String(ep.number).padStart(2, "0")} - ${ep.name}
       </option>
     `,
       )
       .join("");
+}
+
+function renderNavBar(showName) {
+  const nav = document.getElementById("navBar");
+
+  nav.innerHTML = `
+    <button id="backButton">← Back to shows</button>
+    <h2>${showName}</h2>
+  `;
+
+  document.getElementById("backButton").onclick = renderShowsView;
 }
 
 function updateEpisodeCount(n) {
@@ -214,5 +220,3 @@ function updateEpisodeCount(n) {
 function showLoadingMessage() {
   document.getElementById("root").innerHTML = "<p>Loading...</p>";
 }
-
-window.onload = setup;
